@@ -60,12 +60,13 @@ class Toastr
                $script .= 'toastr.options = ' . json_encode($config) . ';';
            }
 
-           $title = addslashes($message['title']) ?: null;
-
-            $script .= 'toastr.' . $message['type'] .
-                '(\'' . addslashes($message['message']) .
-                "','$title" .
-                '\');';
+            $title   = isset($message['title']) ? addslashes($message['title']) : '';
+			$messageText = isset($message['message']) ? addslashes($message['message']) : '';
+			
+			$script .= 'toastr.' . $message['type'] .
+			    '(\'' . $messageText .
+			    "', '" . $title .
+			    "');";
 
 
         }
